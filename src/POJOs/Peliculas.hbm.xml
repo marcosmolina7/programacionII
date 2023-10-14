@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-oct-2023 14:06:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Peliculas" table="peliculas" catalog="cinedb" optimistic-lock="version">
+        <id name="idPelicula" type="java.lang.Integer">
+            <column name="ID_PELICULA" />
+            <generator class="identity" />
+        </id>
+        <property name="nombrePelicula" type="string">
+            <column name="NOMBRE_PELICULA" length="100" />
+        </property>
+        <property name="duracion" type="java.lang.Integer">
+            <column name="DURACION" />
+        </property>
+        <property name="director" type="string">
+            <column name="DIRECTOR" length="100" />
+        </property>
+        <property name="genero" type="string">
+            <column name="GENERO" length="50" />
+        </property>
+        <set name="funcioneses" table="funciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_PELICULA" />
+            </key>
+            <one-to-many class="POJOs.Funciones" />
+        </set>
+    </class>
+</hibernate-mapping>

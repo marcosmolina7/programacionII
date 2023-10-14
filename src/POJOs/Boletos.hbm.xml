@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-oct-2023 14:06:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Boletos" table="boletos" catalog="cinedb" optimistic-lock="version">
+        <id name="idBoleto" type="java.lang.Integer">
+            <column name="ID_BOLETO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="asientos" class="POJOs.Asientos" fetch="select">
+            <column name="ID_ASIENTO" />
+        </many-to-one>
+        <many-to-one name="funciones" class="POJOs.Funciones" fetch="select">
+            <column name="ID_FUNCION" />
+        </many-to-one>
+        <many-to-one name="usuarios" class="POJOs.Usuarios" fetch="select">
+            <column name="ID_USUARIO" />
+        </many-to-one>
+        <property name="nombreCliente" type="string">
+            <column name="NOMBRE_CLIENTE" length="100" />
+        </property>
+        <property name="precio" type="big_decimal">
+            <column name="PRECIO" precision="10" />
+        </property>
+        <property name="fechaCompra" type="timestamp">
+            <column name="FECHA_COMPRA" length="19" />
+        </property>
+        <property name="metodoPago" type="string">
+            <column name="METODO_PAGO" length="18" />
+        </property>
+    </class>
+</hibernate-mapping>

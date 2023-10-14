@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-oct-2023 14:06:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Funciones" table="funciones" catalog="cinedb" optimistic-lock="version">
+        <id name="idFuncion" type="java.lang.Integer">
+            <column name="ID_FUNCION" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="peliculas" class="POJOs.Peliculas" fetch="select">
+            <column name="ID_PELICULA" />
+        </many-to-one>
+        <many-to-one name="salas" class="POJOs.Salas" fetch="select">
+            <column name="ID_SALA" />
+        </many-to-one>
+        <property name="fechaHora" type="timestamp">
+            <column name="FECHA_HORA" length="19" />
+        </property>
+        <set name="boletoses" table="boletos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_FUNCION" />
+            </key>
+            <one-to-many class="POJOs.Boletos" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-oct-2023 14:06:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Usuarios" table="usuarios" catalog="cinedb" optimistic-lock="version">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="ID_USUARIO" />
+            <generator class="identity" />
+        </id>
+        <property name="nombreUsuario" type="string">
+            <column name="NOMBRE_USUARIO" length="100" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="100" unique="true" />
+        </property>
+        <property name="contrasenia" type="short">
+            <column name="CONTRASENIA" not-null="true" />
+        </property>
+        <property name="rol" type="string">
+            <column name="ROL" length="13" />
+        </property>
+        <set name="boletoses" table="boletos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_USUARIO" />
+            </key>
+            <one-to-many class="POJOs.Boletos" />
+        </set>
+    </class>
+</hibernate-mapping>
